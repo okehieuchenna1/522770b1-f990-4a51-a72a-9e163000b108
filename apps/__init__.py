@@ -28,8 +28,7 @@ def register_blueprints(app):
 
 def configure_database(app):
 
-    @app.before_first_request
-    def initialize_database():
+    with app.app_context():
         try:
             db.create_all()
         except Exception as e:
